@@ -17,7 +17,6 @@ class Parking < ApplicationRecord
 
   # 计算停了多少分钟，两个时间直接相减得到的是秒数
   def duration
-    puts "end_at is #{end_at}, start_at is #{start_at},duration is #{end_at - start_at} seconds, #{( end_at - start_at ) / 60} minutes"
      end_at - start_at
   end
 
@@ -51,17 +50,9 @@ class Parking < ApplicationRecord
       self.amount = 200 + (((duration - 60 * 60 ) / 60) / 30).to_f.ceil * 50
     end
   end
-# 5小时，12块
-# 6小时，16块
-# 23小时，16块
-# 25小时，16 + 12 = 28块
-# 32小时，16 + 12 = 32块
-# 48小时，32块
-# 先算出总的，天数 <= 1 ？先加16，然后找出小数部分，小于0.25？按一天零6小时以内，+28，大于0.25？进位按两天加32，
-# 先算出总的，天数 > 1 ？先加16，然后找出小数部分，小于0.25？按一天零6小时以内，+28，大于0.25？进位按两天加32，
-# 都要算小数部分，最后总的计算公式为 整数部分加小数部分。
 
   def calculate_long_term_amount
+    # 这里duration是指秒数
     duration_integer = (duration / 60 / 60 / 24 ).to_s[0].to_i
     duration_decimal = (duration / 60 / 60 / 24).to_s[2,2].to_i
     if duration_decimal >= 25

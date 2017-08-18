@@ -107,7 +107,6 @@ RSpec.describe Parking, type: :model do
      context "long-term" ,:focus => true do
 
       before do
-        # 把每个测试都会用到的 @user 和 @parking 提取出来
         @user = User.create( :email => "test@example.com", :password => "123455678")
         @parking = Parking.new( :parking_type => "long-term", :user => @user, :start_at => @time )
       end

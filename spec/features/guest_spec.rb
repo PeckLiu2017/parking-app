@@ -25,6 +25,7 @@ feature "parking", :type => :feature do
 
     expect(page).to have_content("¥2.00")  # 检查 HTML 中要出现 ¥2.00 文字
 
+    # save_and_open_page 会存下测试当时的 HTML 页面，除错的时候可以使用。
   end
 
 end
