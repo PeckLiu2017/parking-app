@@ -18,7 +18,7 @@ class Parking < ApplicationRecord
   # 计算停了多少分钟，两个时间直接相减得到的是秒数
   def duration
     puts "end_at is #{end_at}, start_at is #{start_at},duration is #{end_at - start_at} seconds, #{( end_at - start_at ) / 60} minutes"
-    ( end_at - start_at ) / 60
+     end_at - start_at
   end
 
   def calculate_amount
@@ -37,18 +37,18 @@ class Parking < ApplicationRecord
   end
 
   def calculate_guest_term_amount
-    if duration <= 60
+    if duration <= 60 * 60
       self.amount = 200
     else
-      self.amount = 200 + ((duration - 60).to_f / 30).ceil * 100
+      self.amount = 200 + (((duration - 60 * 60 ) / 60) / 30).to_f.ceil * 100
     end
   end
 
   def calculate_short_term_amount
-    if duration <= 60
+    if duration <= 60 * 60
       self.amount = 200
     else
-      self.amount = 200 + ((duration - 60).to_f / 30).ceil * 50
+      self.amount = 200 + (((duration - 60 * 60 ) / 60) / 30).to_f.ceil * 50
     end
   end
 # 5小时，12块
@@ -62,8 +62,8 @@ class Parking < ApplicationRecord
 # 都要算小数部分，最后总的计算公式为 整数部分加小数部分。
 
   def calculate_long_term_amount
-    duration_integer = (duration.to_f / 60 / 24 ).to_s[0].to_i
-    duration_decimal = (duration.to_f / 60 / 24).to_s[2,2].to_i
+    duration_integer = (duration / 60 / 60 / 24 ).to_s[0].to_i
+    duration_decimal = (duration / 60 / 60 / 24).to_s[2,2].to_i
     if duration_decimal >= 25
       duration_decimal = 0
       duration_integer += 1

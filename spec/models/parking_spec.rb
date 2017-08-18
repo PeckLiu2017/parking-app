@@ -104,7 +104,7 @@ RSpec.describe Parking, type: :model do
        end
      end
 
-     context "long-term" do
+     context "long-term" ,:focus => true do
 
       before do
         # 把每个测试都会用到的 @user 和 @parking 提取出来
