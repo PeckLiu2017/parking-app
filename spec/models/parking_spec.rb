@@ -19,7 +19,7 @@ RSpec.describe Parking, type: :model do
 
    end
 
-   describe ".calculate_amount" do
+   describe ".save" do
 
     before do
       # 把每个测试都会用到的 @time 提取出来，这个 before 区块会在这个 describe 内的所有测试前执行
@@ -36,31 +36,31 @@ RSpec.describe Parking, type: :model do
       #  it "30 mins should be ¥2" ,:focus => true do
        it "30 mins should be ¥2" do
         @parking.end_at = @time + 30.minutes
-        @parking.calculate_amount
+        @parking.save
         expect(@parking.amount).to eq(200)
        end
 
        it "60 mins should be ¥2" do
         @parking.end_at = @time + 60.minutes
-        @parking.calculate_amount
+        @parking.save
         expect( @parking.amount ).to eq(200)
        end
 
        it "61 mins should be ¥3" do
         @parking.end_at = @time + 61.minutes
-        @parking.calculate_amount
+        @parking.save
         expect( @parking.amount ).to eq(300)
        end
 
        it "90 mins should be ¥3" do
         @parking.end_at = @time + 90.minutes
-        @parking.calculate_amount
+        @parking.save
         expect( @parking.amount ).to eq(300)
        end
 
        it "120 mins should be ¥4" do
         @parking.end_at = @time + 120.minutes
-        @parking.calculate_amount
+        @parking.save
         expect( @parking.amount ).to eq(400)
        end
      end
@@ -75,31 +75,31 @@ RSpec.describe Parking, type: :model do
 
        it "30 mins should be ¥2" do
         @parking.end_at = @time + 30.minutes
-        @parking.calculate_amount
+        @parking.save
         expect(@parking.amount).to eq(200)
        end
 
        it "60 mins should be ¥2" do
         @parking.end_at = @time + 60.minutes
-        @parking.calculate_amount
+        @parking.save
         expect( @parking.amount ).to eq(200)
        end
 
        it "61 mins should be ¥2.5" do
         @parking.end_at = @time + 61.minutes
-        @parking.calculate_amount
+        @parking.save
         expect( @parking.amount ).to eq(250)
        end
 
        it "90 mins should be ¥2.5" do
         @parking.end_at = @time + 90.minutes
-        @parking.calculate_amount
+        @parking.save
         expect( @parking.amount ).to eq(250)
        end
 
        it "120 mins should be ¥3" do
         @parking.end_at = @time + 120.minutes
-        @parking.calculate_amount
+        @parking.save
         expect( @parking.amount ).to eq(300)
        end
      end
@@ -113,37 +113,37 @@ RSpec.describe Parking, type: :model do
 
        it "60 mins should be ¥12" do
         @parking.end_at = @time + 60.minutes
-        @parking.calculate_amount
+        @parking.save
         expect( @parking.amount ).to eq(1200)
        end
 
        it "6 hours should be ¥16" do
         @parking.end_at = @time + 6.hours
-        @parking.calculate_amount
+        @parking.save
         expect( @parking.amount ).to eq(1600)
        end
 
        it "23 hours should be ¥16" do
         @parking.end_at = @time + 23.hours
-        @parking.calculate_amount
+        @parking.save
         expect( @parking.amount ).to eq(1600)
        end
 
        it "25 hours should be ¥28" do
         @parking.end_at = @time + 25.hours
-        @parking.calculate_amount
+        @parking.save
         expect( @parking.amount ).to eq(2800)
        end
 
        it "30 hours should be ¥32" do
         @parking.end_at = @time + 30.hours
-        @parking.calculate_amount
+        @parking.save
         expect( @parking.amount ).to eq(3200)
        end
 
        it "49 hours should be ¥32" do
         @parking.end_at = @time + 49.hours
-        @parking.calculate_amount
+        @parking.save
         expect( @parking.amount ).to eq(4400)
        end
 
