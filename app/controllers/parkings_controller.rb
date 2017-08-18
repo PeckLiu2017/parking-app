@@ -1,6 +1,7 @@
 class ParkingsController < ApplicationController
    # Step1: 显示开始停车的表单
    # binding.pry
+   # byebug 没有上面那个强大
    def new
      @parking = Parking.new
    end
